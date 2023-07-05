@@ -36,7 +36,7 @@ jobs:
           name: Generate coverage report
           command: |
             xcov \
-              -w "Sonarcloud.xcworkspace" \
+              -p Sonarcloud/Sonarcloud.xcodeproj \
               -s "Sonarcloud" \
               --html_report \
               --output_directory output/xcov_output \
