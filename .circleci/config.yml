@@ -6,6 +6,7 @@ version: 2.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
+
 jobs:
   build:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -43,13 +44,12 @@ jobs:
               --ignore_file_path .xcovignore
       - run:
           name: Convert coverage report to Sonar format
-          command: bash ci_scripts/xccov-to-sonarqube-generic.sh ~/Library/Developer/Xcode/DerivedData/ExpressVPN-*/Logs/Test*/*.xcresult >sonarcloud-generic-coverage.xml
-      - store_artifacts:
-          path: sonarcloud-generic-coverage.xml
-      - run:
-          name: Run analysis with Sonar
-          command: sonar-scanner -Dsonar.coverageReportPaths=sonarqube-generic-coverage.xml
-      
+          command: |
+            bash ci_scripts/xccov-to-sonarqube-generic.sh ~/Library/Developer/Xcode/DerivedData/Sonarcloud-*/Logs/Test*/*.xcresult >sonarcloud-generic-coverage.xml
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - sonarcloud-generic-coverage.xml
 
       # Collect XML test results data to show in the UI, and save the same XML
       # files under test-results folder in the Artifacts tab
@@ -59,6 +59,29 @@ jobs:
           path: test_output
           destination: scan-output
 
+  sonar:
+    docker:
+      - image: cimg/base:2021.04
+    steps:
+      - checkout
+      - run:
+          name: Install Sonar Scanner
+          command: |
+            curl -sLo sonar.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
+            unzip sonar.zip
+            sudo mv sonar-scanner-4.7.0.2747-linux /opt/sonar-scanner
+            sudo ln -s /opt/sonar-scanner/bin/sonar-scanner /usr/local/bin/sonar-scanner
+            echo 'export PATH="$PATH:/opt/sonar-scanner/bin"' >> $BASH_ENV
+      - run:
+          name: Sonar scanner
+          command: sonar-scanner
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Run analysis with Sonar
+          command: sonar-scanner -Dproject.settings=./sonar-project.properties -Dsonar.coverageReportPaths=sonarcloud-generic-coverage.xml
+
+    
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
@@ -66,3 +89,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
+      - sonar:
+           context: SonarCloud
+           requires:
+            - build
