@@ -21,8 +21,7 @@ jobs:
           name: Run Sonarcloud Tests
           command: |
             mkdir -p "test_results/Sonarcloud"
-            xcodebuild -workspace "Sonarcloud.xcworkspace" \
-                -scheme "Sonarcloud" \
+            xcodebuild -scheme "Sonarcloud" \
                 -configuration "UnitTest" \
                 -sdk iphonesimulator \
                 -destination "platform=iOS Simulator,OS=16.2,name=iPhone 14" \
