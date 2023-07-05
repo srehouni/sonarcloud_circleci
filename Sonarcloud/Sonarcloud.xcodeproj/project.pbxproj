@@ -12,6 +12,7 @@
 		8E4EA9E12A556491004F9708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4EA9E02A556491004F9708 /* Assets.xcassets */; };
 		8E4EA9E42A556491004F9708 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4EA9E32A556491004F9708 /* Preview Assets.xcassets */; };
 		8E4EA9EE2A556491004F9708 /* SonarcloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4EA9ED2A556491004F9708 /* SonarcloudTests.swift */; };
+		8E4EAA072A55FEF6004F9708 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4EAA062A55FEF6004F9708 /* SwiftUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,7 @@
 		8E4EA9E32A556491004F9708 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8E4EA9E92A556491004F9708 /* SonarcloudTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SonarcloudTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E4EA9ED2A556491004F9708 /* SonarcloudTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonarcloudTests.swift; sourceTree = "<group>"; };
+		8E4EAA062A55FEF6004F9708 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				8E4EA9DE2A55648E004F9708 /* ContentView.swift */,
 				8E4EA9E02A556491004F9708 /* Assets.xcassets */,
 				8E4EA9E22A556491004F9708 /* Preview Content */,
+				8E4EAA062A55FEF6004F9708 /* SwiftUIView.swift */,
 			);
 			path = Sonarcloud;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			files = (
 				8E4EA9DF2A55648E004F9708 /* ContentView.swift in Sources */,
 				8E4EA9DD2A55648E004F9708 /* SonarcloudApp.swift in Sources */,
+				8E4EAA072A55FEF6004F9708 /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
