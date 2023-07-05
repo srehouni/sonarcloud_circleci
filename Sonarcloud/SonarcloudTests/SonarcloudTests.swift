@@ -6,7 +6,6 @@
 //
 
 import XCTest
-@testable import Sonarcloud
 
 final class SonarcloudTests: XCTestCase {
 
